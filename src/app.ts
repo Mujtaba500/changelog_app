@@ -1,12 +1,11 @@
 import express from "express";
+import allRoutes from "./routes/allRoutes";
+
+const port = 3000;
 
 const app = express();
 
-app.get("/", (req, res) => {
-  res.status(400).json({ message: "hello" });
-});
-
-const port = 3000;
+app.use("/api", allRoutes);
 
 app.listen(port, () => {
   const address = `http://localhost:${port}`;
