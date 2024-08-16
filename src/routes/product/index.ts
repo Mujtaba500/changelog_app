@@ -1,8 +1,9 @@
 import { Router } from "express";
+import protectRoute from "../../middleware/auth";
 
 const productRouter = Router();
 
-productRouter.get("/product", (req, res) => {
+productRouter.get("/product", protectRoute, (req, res) => {
   console.log(req.query);
   res.json({
     message: "hello",
