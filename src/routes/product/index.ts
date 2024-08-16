@@ -3,6 +3,7 @@ import { Router } from "express";
 const productRouter = Router();
 
 productRouter.get("/product", (req, res) => {
+  console.log(req.query);
   res.json({
     message: "hello",
   });
