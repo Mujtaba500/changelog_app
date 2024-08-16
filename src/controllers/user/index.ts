@@ -4,8 +4,8 @@ import { comparePasswords, createToken, hashPassword } from "../../utils/auth";
 const userController = {
   createUser: async (req, res) => {
     const payload = req.body;
-    const hashedPassword = hashPassword(payload.password);
     try {
+      const hashedPassword = await hashPassword(payload.password);
       const user = await prisma.user.create({
         data: {
           username: payload.username,
