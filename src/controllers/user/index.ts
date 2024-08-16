@@ -51,6 +51,11 @@ const userController = {
         });
       }
       const token = createToken(user);
+
+      res.status(200).json({
+        message: "User logged in successfully",
+        token,
+      });
     } catch (err) {
       console.log("Something went wrong while logging in   user", err.message);
       res.status(500).json({
