@@ -5,6 +5,8 @@ const updateValidator = {
     const schema = Joi.object({
       title: Joi.string().min(3).max(30).required(),
       body: Joi.string().min(3).max(200).required(),
+      status: Joi.string().valid("IN_PROGRESS", "SHIPPPED", "DEPRECATED"),
+      version: Joi.string().allow(null),
     });
     const { error, value } = schema.validate(req.body);
     if (error) {
@@ -29,6 +31,8 @@ const updateValidator = {
     const schema = Joi.object({
       title: Joi.string().min(3).max(30),
       body: Joi.string().min(3).max(100),
+      status: Joi.string().valid("IN_PROGRESS", "SHIPPPED", "DEPRECATED"),
+      version: Joi.string().allow(null),
     });
 
     const { error, value } = schema.validate(req.body);

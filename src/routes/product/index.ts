@@ -1,22 +1,28 @@
 import { Router } from "express";
 import protectRoute from "../../middleware/auth";
 import productValidator from "../../validators/product";
+import productController from "../../controllers/product";
 
 const productRouter = Router();
 
-productRouter.get("/product", protectRoute, (req, res) => {
-  console.log(req.query);
-  res.json({
-    message: "hello",
-  });
-});
+productRouter.get("/product", protectRoute, productController.getAll);
 
-productRouter.get("/product/:id", () => {});
+productRouter.get("/product/:id", protectRoute, productController.getOne);
 
-productRouter.put("/product/:id", productValidator.changeProductName, () => {});
+productRouter.put(
+  "/product/:id",
+  protectRoute,
+  productValidator.changeProductName,
+  productController.update
+);
 
-productRouter.post("/product", productValidator.createProduct, () => {});
+productRouter.post(
+  "/product",
+  protectRoute,
+  productValidator.createProduct,
+  productController.create
+);
 
-productRouter.delete("/product/:id", () => {});
+productRouter.delete("/product/:id", protectRoute, productController.delete);
 
 export default productRouter;
