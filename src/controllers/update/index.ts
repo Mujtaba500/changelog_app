@@ -97,24 +97,19 @@ const updateController = {
     try {
       const payload = req.body;
       const updateId = req.params.id;
-      const products = await prisma.product.findMany({
+
+      const update = await prisma.update.findUnique({
         where: {
-          belongsToUser: req.user.id,
-        },
-        include: {
-          updates: true,
+          id: updateId,
+          belongsTo: {
+            belongsToUser: req.user.id, // Ensure the update belongs to a product owned by the user
+          },
         },
       });
 
-      const updates = products.reduce((allUpdates, product) => {
-        return [...allUpdates, ...product.updates];
-      }, []);
-
-      const match = updates.find((update) => updateId === update.id);
-
-      if (!match) {
-        return res.status(400).json({
-          message: "Update does not exist or doesnot belong to you",
+      if (!update) {
+        return res.status(404).json({
+          message: "Update doesnot exist or doesnot belong to you",
         });
       }
 
