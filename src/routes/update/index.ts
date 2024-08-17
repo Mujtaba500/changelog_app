@@ -1,16 +1,33 @@
 import { Router } from "express";
 import updateValidator from "../../validators/update";
+import protectRoute from "../../middleware/auth";
+import updateController from "../../controllers/update";
 
 const updateRouter = Router();
 
-updateRouter.get("/update", () => {});
+// Get single update
+updateRouter.get("/update", protectRoute, updateController.getAll);
 
-updateRouter.get("/update/:id", () => {});
+// Get all updates
+updateRouter.get("/update/:id", protectRoute, updateController.getSingle);
 
-updateRouter.put("/update/:id", updateValidator.changeUpdate, () => {});
+// Change update
+updateRouter.put(
+  "/update/:id",
+  protectRoute,
+  updateValidator.changeUpdate,
+  updateController.change
+);
 
-updateRouter.post("/update", updateValidator.createUpdate, () => {});
+// Create new update
+updateRouter.post(
+  "/update",
+  protectRoute,
+  updateValidator.createUpdate,
+  updateController.create
+);
 
-updateRouter.delete("/update/:id", () => {});
+// Delete
+updateRouter.delete("/update/:id", protectRoute, updateController.delete);
 
 export default updateRouter;

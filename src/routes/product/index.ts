@@ -5,10 +5,13 @@ import productController from "../../controllers/product";
 
 const productRouter = Router();
 
+// Get all products
 productRouter.get("/product", protectRoute, productController.getAll);
 
+// Get single product
 productRouter.get("/product/:id", protectRoute, productController.getOne);
 
+// Update product
 productRouter.put(
   "/product/:id",
   protectRoute,
@@ -16,6 +19,7 @@ productRouter.put(
   productController.update
 );
 
+// Create product
 productRouter.post(
   "/product",
   protectRoute,
@@ -23,6 +27,7 @@ productRouter.post(
   productController.create
 );
 
+// Delete product
 productRouter.delete("/product/:id", protectRoute, productController.delete);
 
 export default productRouter;

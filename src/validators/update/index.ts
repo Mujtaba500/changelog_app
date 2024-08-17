@@ -5,6 +5,7 @@ const updateValidator = {
     const schema = Joi.object({
       title: Joi.string().min(3).max(30).required(),
       body: Joi.string().min(3).max(200).required(),
+      productId: Joi.string().required(),
       status: Joi.string().valid("IN_PROGRESS", "SHIPPPED", "DEPRECATED"),
       version: Joi.string().allow(null),
     });
@@ -31,6 +32,7 @@ const updateValidator = {
     const schema = Joi.object({
       title: Joi.string().min(3).max(30),
       body: Joi.string().min(3).max(100),
+      productId: Joi.string(),
       status: Joi.string().valid("IN_PROGRESS", "SHIPPPED", "DEPRECATED"),
       version: Joi.string().allow(null),
     });
