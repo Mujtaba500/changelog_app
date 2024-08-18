@@ -14,7 +14,7 @@ const productController = {
       });
 
       res.status(200).json({
-        data: user.products,
+        data: user?.products,
       });
     } catch (err) {
       console.log("Error while handling get all products", err.message);
