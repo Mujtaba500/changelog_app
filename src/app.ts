@@ -13,4 +13,10 @@ app.use(express.urlencoded({ extended: true })); // query params are encoded for
 
 app.use("/api", allRoutes);
 
+app.use("/", (req, res) => {
+  res.json({
+    message: "API is live",
+  });
+});
+
 export default app;
