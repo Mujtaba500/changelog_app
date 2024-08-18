@@ -17,6 +17,7 @@
     "express": "^4.19.2",
     "joi": "^17.13.3",
     "jsonwebtoken": "^9.0.2",
+    "lodash.merge": "^4.6.2",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

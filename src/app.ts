@@ -3,8 +3,7 @@ import "dotenv/config";
 import morgan from "morgan";
 import cors from "cors";
 import allRoutes from "./routes/allRoutes";
-
-const port = 3000;
+import config from "./config";
 
 const app = express();
 
@@ -15,7 +14,7 @@ app.use(express.urlencoded({ extended: true })); // query params are encoded for
 
 app.use("/api", allRoutes);
 
-app.listen(port, () => {
-  const address = `http://localhost:${port}`;
+app.listen(config.port, () => {
+  const address = `http://localhost:${config.port}`;
   console.log(`Server running on ${address}`);
 });
